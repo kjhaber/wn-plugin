@@ -10,7 +10,7 @@
     {
       "name": "wn",
       "description": "Skills and launcher scripts that complement the wn (\"What's Next\") CLI work item manager",
-      "source": ".",
+      "source": "./",
       "category": "productivity",
       "homepage": "https://github.com/kjhaber/wn-plugin"
     }
