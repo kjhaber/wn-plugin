@@ -5,6 +5,12 @@
 # Reads install preferences from ${CLAUDE_PLUGIN_DATA}/config.json.
 # No-op if /wn:setup has not been run yet.
 
+# Resolve plugin root from env var or script's own location as fallback
+PLUGIN_ROOT="${CLAUDE_PLUGIN_ROOT:-$(cd "$(dirname "$0")/.." && pwd)}"
+
+# CLAUDE_PLUGIN_DATA must be set by the hook runner; exit cleanly if not
+[ -n "${CLAUDE_PLUGIN_DATA}" ] || exit 0
+
 CONFIG="${CLAUDE_PLUGIN_DATA}/config.json"
 [ -f "$CONFIG" ] || exit 0
 
@@ -12,7 +18,7 @@ CONFIG="${CLAUDE_PLUGIN_DATA}/config.json"
 INSTALL_DIR=$(jq -r '.install_dir // empty' "$CONFIG" 2>/dev/null)
 if [ -n "$INSTALL_DIR" ]; then
   INSTALL_DIR=$(eval echo "$INSTALL_DIR")
-  SRC="${CLAUDE_PLUGIN_ROOT}/scripts/start-wn-tmux-claude"
+  SRC="${PLUGIN_ROOT}/scripts/start-wn-tmux-claude"
   DST="${INSTALL_DIR}/start-wn-tmux-claude"
   if ! diff -q "$SRC" "$DST" >/dev/null 2>&1; then
     mkdir -p "$INSTALL_DIR"
@@ -24,7 +30,7 @@ fi
 # Sync settings template if user opted in
 AUTO_TPL=$(jq -r '.auto_update_template // "true"' "$CONFIG" 2>/dev/null)
 if [ "$AUTO_TPL" = "true" ]; then
-  SRC="${CLAUDE_PLUGIN_ROOT}/config/wn-worktree-settings.local.json"
+  SRC="${PLUGIN_ROOT}/config/wn-worktree-settings.local.json"
   DST="${HOME}/.config/claude/wn-worktree-settings.local.json"
   if ! diff -q "$SRC" "$DST" >/dev/null 2>&1; then
     mkdir -p "${HOME}/.config/claude"
