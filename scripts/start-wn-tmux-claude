@@ -50,4 +50,4 @@ jq \
   ~/.config/claude/wn-worktree-settings.local.json \
   > "${worktree}/.claude/settings.local.json"
 tmux new-window -d -n "$window_name" -c "$worktree" \
-  "claude '/wn-implement ${item_id}' ; zsh"
+  "claude '/wn:implement ${item_id}' ; zsh"
