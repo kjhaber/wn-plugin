@@ -1,0 +1,53 @@
+#!/usr/bin/env zsh
+# start-wn-tmux-claude
+# Opens Claude Code in a new tmux window for a 'wn' work item.
+#
+# Bundled with the wn Claude Code plugin. Installed to a user-
+# configured PATH directory by /wn:setup.
+#
+# In 'wn settings' in the "runners" block:
+# ```
+#     "tmux-claude": {
+#       "cmd": "start-wn-tmux-claude {{.Worktree}} {{.ItemID}}",
+#       "leave_worktree": true
+#     }
+# ```
+#
+# Then run `wn launch tmux-claude` to open Claude Code on the
+# current wn work item in a new tmux window.
+
+worktree="$1"
+item_id="$2"
+window_name="wn-${item_id}"
+
+# If a window for this item already exists, switch to it
+if tmux list-windows -F "#{window_name}" 2>/dev/null | grep -qx "$window_name"; then
+  tmux select-window -t "$window_name"
+  exit 0
+fi
+
+# WN_ROOT is set in the environment by wn launch
+mkdir -p "${worktree}/.claude"
+# Generate settings.local.json from template, substituting worktree-specific permissions:
+#   - Read scoped to the worktree directory only
+#   - git merge restricted to main/master branches (local and origin/)
+jq \
+  --arg wt "$worktree" \
+  '
+  .permissions.allow = (
+    .permissions.allow
+    | map(select(. != "Read" and . != "Edit" and . != "Bash(git merge:*)"))
+    | . + [
+        "Read(\($wt)/**)",
+        "Edit(\($wt)/**)",
+        "Bash(git merge main:*)",
+        "Bash(git merge master:*)",
+        "Bash(git merge origin/main:*)",
+        "Bash(git merge origin/master:*)"
+      ]
+  )
+  ' \
+  ~/.config/claude/wn-worktree-settings.local.json \
+  > "${worktree}/.claude/settings.local.json"
+tmux new-window -d -n "$window_name" -c "$worktree" \
+  "claude '/wn-implement ${item_id}' ; zsh"
