@@ -1,5 +1,5 @@
 ---
-description: Merge the current feature branch into main and mark the wn item done. Use when the user invokes "/wn-merge" after reviewing a branch implemented by /wn-implement.
+description: Merge the current feature branch into main and mark the wn item done. Use when the user invokes "/wn:merge" after reviewing a branch implemented by /wn:implement.
 ---
 
 Merge the current feature branch into main and mark the item done. Run each step in sequence — stop and report if anything fails.
