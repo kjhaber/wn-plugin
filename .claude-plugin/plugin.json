@@ -1,7 +1,7 @@
 {
   "name": "wn",
   "description": "A plugin with skills that complement the wn (\"What's Next\") work item manager",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": {
     "name": "Keith Haber",
     "url": "https://kjhaber.github.io/"
