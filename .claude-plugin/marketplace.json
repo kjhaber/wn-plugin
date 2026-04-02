@@ -1,0 +1,18 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "kjhaber-wn-plugin",
+  "description": "Skills and launcher scripts that complement the wn work item manager",
+  "owner": {
+    "name": "Keith Haber",
+    "url": "https://kjhaber.github.io/"
+  },
+  "plugins": [
+    {
+      "name": "wn",
+      "description": "Skills and launcher scripts that complement the wn (\"What's Next\") CLI work item manager",
+      "source": ".",
+      "category": "productivity",
+      "homepage": "https://github.com/kjhaber/wn-plugin"
+    }
+  ]
+}
