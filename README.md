@@ -12,7 +12,13 @@ A Claude Code plugin with skills and scripts to accompany [`wn`](https://github.
 
 ## Installation
 
-Install from a local checkout:
+Install from GitHub:
+
+```
+claude plugin install https://github.com/kjhaber/wn-plugin --scope user
+```
+
+Or from a local checkout:
 
 ```
 claude plugin install /path/to/wn-plugin --scope user
