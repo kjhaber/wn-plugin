@@ -1,4 +1,10 @@
 {
+  "mcpServers": {
+    "wn": {
+      "command": "wn",
+      "args": ["mcp"]
+    }
+  },
   "hooks": {
     "SessionStart": [
       {

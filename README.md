@@ -6,7 +6,7 @@ A Claude Code plugin with skills and scripts to accompany [`wn`](https://github.
 
 | Skill | Description |
 |---|---|
-| `/wn:setup` | First-time setup: installs wn, registers the MCP server, installs the tmux-claude launcher, and configures wn settings |
+| `/wn:setup` | First-time setup: installs wn if needed, installs the tmux-claude launcher, and configures wn settings |
 | `/wn:implement` | Claim a wn work item and implement it with red/green TDD — handles branching, testing, committing, and marking review-ready |
 | `/wn:merge` | Squash-merge the current feature branch into main and mark the item done |
 
@@ -36,10 +36,9 @@ Then run `/wn:setup` to complete configuration.
 `/wn:setup` walks through:
 
 1. Installing `wn` (macOS: `brew install kjhaber/tap/wn`) if not found
-2. Registering the `wn` MCP server with Claude Code
-3. Choosing an install directory for the `start-wn-tmux-claude` launcher script (default: `~/.local/bin`)
-4. Opting in or out of auto-updating the worktree permissions template
-5. Configuring the `tmux-claude` runner in `wn settings`
+2. Choosing an install directory for the `start-wn-tmux-claude` launcher script (default: `~/.local/bin`)
+3. Opting in or out of auto-updating the worktree permissions template
+4. Configuring the `tmux-claude` runner in `wn settings`
 
 Re-run `/wn:setup` at any time to reconfigure.
 
