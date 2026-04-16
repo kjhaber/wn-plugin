@@ -8,7 +8,9 @@ A Claude Code plugin with skills and scripts to accompany [`wn`](https://github.
 |---|---|
 | `/wn:setup` | First-time setup: installs wn if needed, installs the tmux-claude launcher, and configures wn settings |
 | `/wn:implement` | Claim a wn work item and implement it with red/green TDD — handles branching, testing, committing, and marking review-ready |
-| `/wn:merge` | Squash-merge the current feature branch into main and mark the item done |
+| `/wn:merge` | Squash-merge the current feature branch into main and mark the item done (solo-dev workflow) |
+| `/wn:pr-create` | Push the feature branch and open a pull request on GitHub, recording the PR URL on the wn item (requires `gh` CLI) |
+| `/wn:pr-close` | Confirm the PR is merged, pull main, record the merge commit, and mark the item done (requires `gh` CLI) |
 
 ## Installation
 
