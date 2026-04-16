@@ -1,12 +1,16 @@
-.PHONY: all lint shellcheck json-validate
+.PHONY: all lint shellcheck json-validate test
 
-all: lint
+all: lint test
 
 lint: shellcheck json-validate
 
 shellcheck:
 	shellcheck scripts/session-start.sh
+	shellcheck tests/test-session-start.sh
 	zsh -n scripts/start-wn-tmux-claude
+
+test:
+	bash tests/test-session-start.sh
 
 json-validate:
 	@for f in hooks/hooks.json settings.json .mcp.json \
