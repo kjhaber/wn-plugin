@@ -1,5 +1,5 @@
 ---
-description: Claim a wn work item (if not already claimed), set up a working branch, and implement it inline using red/green TDD. Use when the user invokes "/wn-implement [item-id]", asks to work on a wn item, or wants to implement a wn item interactively.
+description: Claim a wn work item (if not already claimed), set up a working branch, and implement it inline using red/green TDD. Use when the user invokes "/wn:implement [item-id]", asks to work on a wn item, or wants to implement a wn item interactively.
 argument-hint: [item-id]
 ---
 
@@ -75,4 +75,4 @@ Report to the user:
 - Use `wn verify` for all build/test runs — do not call the underlying build tool directly.
 - Do NOT push to remote.
 - Do NOT update README or other docs unless a user-visible command was added, removed, or changed.
-- Do NOT call `wn_done` — that happens later via `/wn-merge` after the user reviews.
+- Do NOT call `wn_done` — that happens later via `/wn:merge` after the user reviews.
